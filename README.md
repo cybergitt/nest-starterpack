@@ -16,19 +16,19 @@ Nest JS REST API starterpack for typical project.
 
 ## Features
 
-- [] Config Service ([@nestjs/config](https://www.npmjs.com/package/@nestjs/config)).
-- [] Database ([typeorm](https://www.npmjs.com/package/typeorm)).
-- [] Seeding.
-- [] Mailing ([nodemailer](https://www.npmjs.com/package/nodemailer), [@nestjs-modules/mailer](https://www.npmjs.com/package/@nestjs-modules/mailer)).
-- [] Sign in and sign up via email.
-- [] Social sign in (Apple, Facebook, Google, Twitter).
-- [] Admin and User roles.
-- [] I18N ([nestjs-i18n](https://www.npmjs.com/package/nestjs-i18n)).
-- [] File uploads. Support local and Amazon S3 drivers.
-- [] Swagger.
-- [] E2E and units tests.
-- [] Docker.
-- [] CI (Github Actions).
+- [ ] Config Service ([@nestjs/config](https://www.npmjs.com/package/@nestjs/config)).
+- [ ] Database ([typeorm](https://www.npmjs.com/package/typeorm)).
+- [ ] Seeding.
+- [ ] Mailing ([nodemailer](https://www.npmjs.com/package/nodemailer), [@nestjs-modules/mailer](https://www.npmjs.com/package/@nestjs-modules/mailer)).
+- [ ] Sign in and sign up via email.
+- [ ] Social sign in (Apple, Facebook, Google, Twitter).
+- [ ] Admin and User roles.
+- [ ] I18N ([nestjs-i18n](https://www.npmjs.com/package/nestjs-i18n)).
+- [ ] File uploads. Support local and Amazon S3 drivers.
+- [ ] Swagger.
+- [ ] E2E and units tests.
+- [ ] Docker.
+- [ ] CI (Github Actions).
 
 ## Installation
 
