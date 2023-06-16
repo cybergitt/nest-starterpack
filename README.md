@@ -16,7 +16,7 @@ Nest JS REST API starterpack for typical project.
 
 ## Features
 
-- [ ] Config Service ([@nestjs/config](https://www.npmjs.com/package/@nestjs/config)).
+- [x] Config Service ([@nestjs/config](https://www.npmjs.com/package/@nestjs/config)).
 - [ ] Database ([typeorm](https://www.npmjs.com/package/typeorm)).
 - [ ] Seeding.
 - [ ] Mailing ([nodemailer](https://www.npmjs.com/package/nodemailer), [@nestjs-modules/mailer](https://www.npmjs.com/package/@nestjs-modules/mailer)).
