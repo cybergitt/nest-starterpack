@@ -21,7 +21,7 @@ Nest JS REST API starterpack for typical project.
 - [ ] Seeding.
 - [ ] Mailing ([nodemailer](https://www.npmjs.com/package/nodemailer), [@nestjs-modules/mailer](https://www.npmjs.com/package/@nestjs-modules/mailer)).
 - [ ] Sign in and sign up via email.
-- [ ] Social sign in (Apple, Facebook, Google, Twitter).
+- [ ] Social sign in (Google).
 - [ ] Admin and User roles.
 - [ ] I18N ([nestjs-i18n](https://www.npmjs.com/package/nestjs-i18n)).
 - [ ] File uploads. Support local and Amazon S3 drivers.
