@@ -1,4 +1,4 @@
-import validateConfig from '@common/utils/validate-config';
+import envValidation from '@common/utils/env.validation';
 import { registerAs } from '@nestjs/config';
 import { IsEnum, ValidateIf, IsString, IsOptional } from 'class-validator';
 import { FileConfig } from './config.type';
@@ -35,7 +35,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<FileConfig>('file', () => {
-  validateConfig(process.env, EnvironmentVariablesValidator);
+  envValidation(process.env, EnvironmentVariablesValidator);
 
   return {
     driver: process.env.FILE_DRIVER ?? 'local',

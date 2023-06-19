@@ -1,4 +1,4 @@
-import validateConfig from '@common/utils/validate-config';
+import envValidation from '@common/utils/env.validation';
 import { registerAs } from '@nestjs/config';
 import {
   IsInt,
@@ -49,7 +49,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<MailConfig>('mail', () => {
-  validateConfig(process.env, EnvironmentVariablesValidator);
+  envValidation(process.env, EnvironmentVariablesValidator);
 
   return {
     mailer: process.env.MAIL_MAILER,

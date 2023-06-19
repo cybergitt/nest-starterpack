@@ -1,4 +1,4 @@
-import validateConfig from '@common/utils/validate-config';
+import envValidation from '@common/utils/env.validation';
 import { registerAs } from '@nestjs/config';
 import { IsString, IsOptional } from 'class-validator';
 import { GoogleConfig } from './config.type';
@@ -14,7 +14,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<GoogleConfig>('google', () => {
-  validateConfig(process.env, EnvironmentVariablesValidator);
+  envValidation(process.env, EnvironmentVariablesValidator);
 
   return {
     clientId: process.env.GOOGLE_CLIENT_ID,

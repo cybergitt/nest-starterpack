@@ -1,4 +1,4 @@
-import validateConfig from '@common/utils/validate-config';
+import envValidation from '@common/utils/env.validation';
 import { registerAs } from '@nestjs/config';
 import {
   ValidateIf,
@@ -70,15 +70,15 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<DatabaseConfig>('database', () => {
-  validateConfig(process.env, EnvironmentVariablesValidator);
+  envValidation(process.env, EnvironmentVariablesValidator);
 
   return {
-    type: process.env.DB_TYPE,
+    type: process.env.DB_TYPE ? process.env.DB_TYPE : 'postgres',
     host: process.env.DB_HOST,
     port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
-    password: process.env.DB_PASSWORD,
-    name: process.env.DB_NAME,
-    username: process.env.DB_USERNAME,
+    name: process.env.DB_NAME ? process.env.DB_NAME : 'postgresdb',
+    username: process.env.DB_USERNAME ? process.env.DB_USERNAME : 'postgres',
+    password: process.env.DB_PASSWORD ? process.env.DB_PASSWORD : 'postgres',
     synchronize: process.env.DB_SYNCHRONIZE === 'true',
     maxConnections: process.env.DB_MAX_CONNECTIONS
       ? parseInt(process.env.DB_MAX_CONNECTIONS, 10)

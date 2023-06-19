@@ -1,4 +1,4 @@
-import validateConfig from '@common/utils/validate-config';
+import envValidation from '@common/utils/env.validation';
 import { registerAs } from '@nestjs/config';
 import {
   IsEnum,
@@ -53,7 +53,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<AppConfig>('app', () => {
-  validateConfig(process.env, EnvironmentVariablesValidator);
+  envValidation(process.env, EnvironmentVariablesValidator);
 
   return {
     nodeEnv: process.env.NODE_ENV ?? 'development',

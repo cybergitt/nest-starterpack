@@ -1,16 +1,43 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './modules/users/users.module';
+import databaseConfig from '@infrastructure/config/database.config';
+import authConfig from '@infrastructure/config/auth.config';
+import appConfig from '@infrastructure/config/app.config';
+import mailConfig from '@infrastructure/config/mail.config';
+import fileConfig from '@infrastructure/config/file.config';
+import googleConfig from '@infrastructure/config/google.config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DefaultDatabaseFactory } from '@infrastructure/database/database.factory';
+import { TypeOrmConfigService } from '@infrastructure/database/typeorm-config.service';
+import { PostsModule } from './modules/posts/posts.module';
+import pgormConfig from '@infrastructure/config/pg-orm.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [
+        appConfig,
+        databaseConfig,
+        // pgormConfig,
+        authConfig,
+        mailConfig,
+        fileConfig,
+        googleConfig,
+      ],
       envFilePath: ['.env.development'], // set multiple env paths if needed
     }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      // useFactory: DefaultDatabaseFactory,
+      useClass: TypeOrmConfigService,
+    }),
     UsersModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
