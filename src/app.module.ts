@@ -13,6 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '@infrastructure/database/typeorm-config.service';
 import { PostsModule } from './modules/posts/posts.module';
 import { HomeModule } from './modules/home/home.module';
+// import { I18nModule } from 'nestjs-i18n/dist/i18n.module';
 import { HeaderResolver, I18nModule } from 'nestjs-i18n';
 import * as path from 'path';
 import { AllConfigType } from '@infrastructure/config/config.type';
