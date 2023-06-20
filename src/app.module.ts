@@ -10,10 +10,9 @@ import mailConfig from '@infrastructure/config/mail.config';
 import fileConfig from '@infrastructure/config/file.config';
 import googleConfig from '@infrastructure/config/google.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DefaultDatabaseFactory } from '@infrastructure/database/database.factory';
 import { TypeOrmConfigService } from '@infrastructure/database/typeorm-config.service';
 import { PostsModule } from './modules/posts/posts.module';
-import pgormConfig from '@infrastructure/config/pg-orm.config';
+import { HomeModule } from './modules/home/home.module';
 
 @Module({
   imports: [
@@ -22,7 +21,6 @@ import pgormConfig from '@infrastructure/config/pg-orm.config';
       load: [
         appConfig,
         databaseConfig,
-        // pgormConfig,
         authConfig,
         mailConfig,
         fileConfig,
@@ -31,13 +29,13 @@ import pgormConfig from '@infrastructure/config/pg-orm.config';
       envFilePath: ['.env.development'], // set multiple env paths if needed
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      // useFactory: DefaultDatabaseFactory,
+      // imports: [ConfigModule],
+      // inject: [ConfigService],
       useClass: TypeOrmConfigService,
     }),
     UsersModule,
     PostsModule,
+    HomeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
