@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './modules/users/users.module';
 import databaseConfig from '@infrastructure/config/database.config';
@@ -20,6 +18,7 @@ import { AllConfigType } from '@infrastructure/config/config.type';
 import { MailModule } from './modules/mail/mail.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailConfigService } from '@modules/mail/mail-config.service';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -66,8 +65,7 @@ import { MailConfigService } from '@modules/mail/mail-config.service';
     PostsModule,
     HomeModule,
     MailModule,
+    AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
