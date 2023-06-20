@@ -13,6 +13,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '@infrastructure/database/typeorm-config.service';
 import { PostsModule } from './modules/posts/posts.module';
 import { HomeModule } from './modules/home/home.module';
+import { HeaderResolver, I18nModule } from 'nestjs-i18n';
+import * as path from 'path';
+import { AllConfigType } from '@infrastructure/config/config.type';
 
 @Module({
   imports: [
@@ -32,6 +35,25 @@ import { HomeModule } from './modules/home/home.module';
       // imports: [ConfigModule],
       // inject: [ConfigService],
       useClass: TypeOrmConfigService,
+    }),
+    I18nModule.forRootAsync({
+      useFactory: (configService: ConfigService<AllConfigType>) => ({
+        fallbackLanguage: configService.getOrThrow('app.fallbackLanguage', {
+          infer: true,
+        }),
+        loaderOptions: { path: path.join(__dirname, '/i18n/'), watch: true },
+      }),
+      resolvers: [
+        {
+          use: HeaderResolver,
+          useFactory: (configService: ConfigService) => {
+            return [configService.get('app.headerLanguage')];
+          },
+          inject: [ConfigService],
+        },
+      ],
+      imports: [ConfigModule],
+      inject: [ConfigService],
     }),
     UsersModule,
     PostsModule,
