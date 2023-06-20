@@ -17,6 +17,9 @@ import { HomeModule } from './modules/home/home.module';
 import { HeaderResolver, I18nModule } from 'nestjs-i18n';
 import * as path from 'path';
 import { AllConfigType } from '@infrastructure/config/config.type';
+import { MailModule } from './modules/mail/mail.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { MailConfigService } from '@modules/mail/mail-config.service';
 
 @Module({
   imports: [
@@ -36,6 +39,9 @@ import { AllConfigType } from '@infrastructure/config/config.type';
       // imports: [ConfigModule],
       // inject: [ConfigService],
       useClass: TypeOrmConfigService,
+    }),
+    MailerModule.forRootAsync({
+      useClass: MailConfigService,
     }),
     I18nModule.forRootAsync({
       useFactory: (configService: ConfigService<AllConfigType>) => ({
@@ -59,6 +65,7 @@ import { AllConfigType } from '@infrastructure/config/config.type';
     UsersModule,
     PostsModule,
     HomeModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
